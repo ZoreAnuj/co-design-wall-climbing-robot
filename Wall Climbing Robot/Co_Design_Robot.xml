@@ -1,0 +1,36 @@
+
+<mujoco>
+  <option timestep="0.005" gravity="0 0 -9.81"/>
+  <worldbody>
+    <geom type="plane" size="12 12 0.1" rgba="0.9 0.85 0.2 1"/>
+    <geom type="box" size="0.05 12 12" pos="1 0 1"
+          rgba="1 1 1 1" friction="0.5 0.01 0.001"/>
+
+    <body name="torso" pos="0.30035995614644284 0 1">
+      <joint type="slide" axis="1 0 0" damping="5"/>
+      <joint type="slide" axis="0 0 1" damping="5"/>
+      <geom type="box" size="0.05 0.05 0.05" rgba="0.85 0.2 0.2 1"/>
+
+      <body name="left_leg" pos="0 0 -0.05">
+        <joint name="hip_L" type="hinge" axis="0 1 0"
+               range="-44.276321225503395 44.276321225503395" damping="20"/>
+        <geom type="capsule" fromto="0 0 0 0.5996400438535572 0 0"
+              size="0.02" rgba="0.2 0.4 0.9 1"/>
+        <site name="left_tip" pos="0.5996400438535572 0 0" size="0.01"/>
+      </body>
+
+      <body name="right_leg" pos="0 0 0.05">
+        <joint name="hip_R" type="hinge" axis="0 1 0"
+               range="-44.276321225503395 44.276321225503395" damping="20"/>
+        <geom type="capsule" fromto="0 0 0 0.5996400438535572 0 0"
+              size="0.02" rgba="0.2 0.8 0.3 1"/>
+        <site name="right_tip" pos="0.5996400438535572 0 0" size="0.01"/>
+      </body>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <motor joint="hip_L" gear="101.84650116974542" ctrlrange="-1 1"/>
+    <motor joint="hip_R" gear="101.84650116974542" ctrlrange="-1 1"/>
+  </actuator>
+</mujoco>
